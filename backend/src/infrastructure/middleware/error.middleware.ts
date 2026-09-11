@@ -1,6 +1,7 @@
 import type { NextFunction, Request, Response } from "express";
 import { ZodError } from "zod";
 import { ChapterNotFoundError } from "../../modules/chapters/error.js";
+import { TranslationNotFoundError } from "../../modules/translations/error.js";
 
 export const errorMiddleware = (
   error: Error,
@@ -24,6 +25,13 @@ export const errorMiddleware = (
   }
 
   if (error instanceof ChapterNotFoundError) {
+    return res.status(404).json({
+      success: false,
+      message: error.message,
+    });
+  }
+
+  if (error instanceof TranslationNotFoundError) {
     return res.status(404).json({
       success: false,
       message: error.message,
