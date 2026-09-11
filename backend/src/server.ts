@@ -4,9 +4,8 @@ dns.setServers(["8.8.8.8"]);
 
 import "dotenv/config";
 import app from "./app.js";
-import { env } from "./config/env.js";
-import { connectDatabase } from "./db/connection.js";
-
+import { env } from "./infrastructure/config/env.js";
+import { connectDatabase } from "./infrastructure/db/connection.js";
 const startServer = async () => {
   try {
     await connectDatabase();

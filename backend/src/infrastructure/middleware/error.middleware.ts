@@ -1,6 +1,6 @@
 import type { NextFunction, Request, Response } from "express";
 import { ZodError } from "zod";
-import { ChapterNotFoundError } from "../chapters/error.js";
+import { ChapterNotFoundError } from "../../modules/chapters/error.js";
 
 export const errorMiddleware = (
   error: Error,
