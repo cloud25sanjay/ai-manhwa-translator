@@ -17,12 +17,18 @@ export const createTranslation = async (data: CreateTranslationInput) => {
   });
 
   if (existingTranslation) {
-    return existingTranslation;
+    return {
+      translation: existingTranslation,
+      created: false,
+    };
   }
 
   const translation = await TranslationModel.create(data);
 
-  return translation;
+  return {
+    translation,
+    created: true,
+  };
 };
 
 export const getTranslationById = async (id: string) => {

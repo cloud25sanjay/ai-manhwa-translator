@@ -8,11 +8,11 @@ export const createTranslationController = async (
 ) => {
   const data = createTranslationSchema.parse(req.body);
 
-  const translation = await createTranslation(data);
+  const result = await createTranslation(data);
 
-  res.status(201).json({
+  res.status(result.created ? 201 : 200).json({
     success: true,
-    data: translation,
+    data: result.translation,
   });
 };
 
